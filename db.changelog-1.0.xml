@@ -1,0 +1,946 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="user (generated)" id="1642073240820-1">
+	    <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libaannotations"/>
+          </not>
+        </preConditions>
+        <createTable tableName="libaannotations">
+            <column name="AvtorId" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nid" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Title" type="VARCHAR(255) CHARACTER SET utf8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Body" type="LONGTEXT CHARACTER SET utf8"/>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=InnoDB DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-2">
+	    <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libapics"/>
+          </not>
+        </preConditions>
+        <createTable tableName="libapics">
+            <column name="AvtorId" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nid" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="File" type="VARCHAR(255) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=InnoDB DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-3">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libavtor"/>
+          </not>
+        </preConditions>
+		<createTable tableName="libavtor">
+            <column defaultValueNumeric="0" name="BookId" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValueNumeric="0" name="AvtorId" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValueNumeric="0" name="Pos" type="TINYINT(3) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=MyISAM DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-4">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libavtorname"/>
+          </not>
+        </preConditions>
+		<createTable tableName="libavtorname">
+            <column autoIncrement="true" name="AvtorId" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValue="" name="FirstName" type="VARCHAR(99) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="MiddleName" type="VARCHAR(99) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="LastName" type="VARCHAR(99) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="NickName" type="VARCHAR(33) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="uid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Email" type="VARCHAR(255) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Homepage" type="VARCHAR(255) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="Gender" type="CHAR(1) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="MasterId" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=MyISAM DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-5">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libbannotations"/>
+          </not>
+        </preConditions>
+		<createTable tableName="libbannotations">
+            <column name="BookId" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nid" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Title" type="VARCHAR(255) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Body" type="LONGTEXT CHARACTER SET utf8"/>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=InnoDB DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-6">
+	    <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libbook"/>
+          </not>
+        </preConditions>
+        <createTable tableName="libbook">
+            <column autoIncrement="true" name="BookId" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValueNumeric="0" name="FileSize" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="Time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="Title" type="VARCHAR(254) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Title1" type="VARCHAR(254) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="ru" name="Lang" type="CHAR(3) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="LangEx" type="SMALLINT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="SrcLang" type="CHAR(3) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FileType" type="CHAR(4) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="Encoding" type="VARCHAR(32) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="Year" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="0" name="Deleted" type="CHAR(1) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="Ver" type="VARCHAR(8) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FileAuthor" type="VARCHAR(64) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="N" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="keywords" type="VARCHAR(255) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="md5" type="BINARY(32) CHARACTER SET utf8 ">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column defaultValueDate="2009-11-29T08:00:00" name="Modified" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="pmd5" type="CHAR(32) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="InfoCode" type="TINYINT(3) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="Pages" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="Chars" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=MyISAM DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-7">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libbpics"/>
+          </not>
+        </preConditions>
+		<createTable tableName="libbpics">
+            <column name="BookId" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nid" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="File" type="VARCHAR(255) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=InnoDB DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-8">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libfilename"/>
+          </not>
+        </preConditions>
+		<createTable tableName="libfilename">
+            <column name="BookId" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="FileName" type="VARCHAR(255) CHARACTER SET utf8 ">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=MyISAM DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-9">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libgenre"/>
+          </not>
+        </preConditions>
+		<createTable tableName="libgenre">
+            <column autoIncrement="true" name="Id" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValueNumeric="0" name="BookId" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="GenreId" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-10">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libgenrelist"/>
+          </not>
+        </preConditions>
+		<createTable tableName="libgenrelist">
+            <column autoIncrement="true" name="GenreId" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValue="" name="GenreCode" type="VARCHAR(45) CHARACTER SET utf8 ">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValue="" name="GenreDesc" type="VARCHAR(99) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="GenreMeta" type="VARCHAR(45) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>		
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=MyISAM DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-11">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libjoinedbooks"/>
+          </not>
+        </preConditions>
+		<createTable tableName="libjoinedbooks">
+            <column autoIncrement="true" name="Id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="Time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="BadId" type="INT">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column defaultValueNumeric="0" name="GoodId" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="realId" type="INT"/>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=MyISAM DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-12">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="librate"/>
+          </not>
+        </preConditions>
+		<createTable tableName="librate">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="BookId" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UserId" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Rate" type="CHAR(1) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-13">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="librecs"/>
+          </not>
+        </preConditions>
+		<createTable tableName="librecs">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="uid" type="INT"/>
+            <column name="bid" type="INT"/>
+            <column name="timestamp" type="datetime"/>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-14">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libreviews"/>
+          </not>
+        </preConditions>
+		<createTable tableName="libreviews">
+            <column name="Name" type="VARCHAR(255) CHARACTER SET utf8 ">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="Time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BookId" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Text" type="TEXT CHARACTER SET utf8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=INNODB DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-15">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libseq"/>
+          </not>
+        </preConditions>
+		<createTable tableName="libseq">
+            <column name="BookId" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="SeqId" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="SeqNumb" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="Level" type="TINYINT(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="Type" type="TINYINT(3) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=MyISAM DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-16">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libseqname"/>
+          </not>
+        </preConditions>
+		<createTable remarks="Список форм (1-100) и названий сериа" tableName="libseqname">
+            <column autoIncrement="true" name="SeqId" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValue="" name="SeqName" type="VARCHAR(254) CHARACTER SET utf8 ">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+		<modifySql dbms="mysql">
+            <append value=" ENGINE=MyISAM DEFAULT CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-17">
+        <preConditions onFail="MARK_RAN">
+          <not>
+            <tableExists tableName="libtranslator"/>
+          </not>
+        </preConditions>
+		<createTable tableName="libtranslator">
+            <column name="BookId" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="TranslatorId" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValueNumeric="0" name="Pos" type="TINYINT(3) UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+	
+    <changeSet author="user (generated)" id="1642073240820-18">
+	    <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 2 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libbook' 
+				 
+				 and index_name = 'BookDel';
+			</sqlCheck>  
+        </preConditions>
+        <addUniqueConstraint columnNames="Deleted, BookId" constraintName="BookDel" tableName="libbook"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-19">
+	    <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 2 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='librate' 
+				 
+				 and index_name = 'BookId';
+			</sqlCheck>  
+        </preConditions>
+        <addUniqueConstraint columnNames="BookId, UserId" constraintName="BookId" tableName="librate"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-20">
+	    <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 2 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='librecs' 
+				 
+				 and index_name = 'bu';
+			</sqlCheck>  
+        </preConditions>
+        <addUniqueConstraint columnNames="bid, uid" constraintName="bu" tableName="librecs"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-21">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 2 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libgenre' 
+				 
+				 and index_name = 'u';
+			</sqlCheck>  
+        </preConditions>
+		<addUniqueConstraint columnNames="BookId, GenreId" constraintName="u" tableName="libgenre"/>
+    </changeSet>
+	
+    <changeSet author="user (generated)" id="1642073240820-22">
+        <preConditions onFail="MARK_RAN">
+             <indexExists indexName="BookId1" tableName="librate"/>  
+        </preConditions>
+		<createIndex indexName="BookId1" tableName="librate">
+            <column name="BookId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-23">
+        <preConditions onFail="MARK_RAN">
+             <indexExists indexName="Deleted" tableName="libbook"/>   
+        </preConditions>
+		<createIndex indexName="Deleted" tableName="libbook">
+            <column name="Deleted"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-24">
+        <preConditions onFail="MARK_RAN">
+             <indexExists indexName="FileAuthor" tableName="libbook"/>    
+        </preConditions>
+		<createIndex indexName="FileAuthor" tableName="libbook">
+            <column name="FileAuthor"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-25">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libbook' 
+				 
+				 and index_name = 'FileSize';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="FileSize" tableName="libbook">
+            <column defaultValueNumeric="0" name="FileSize"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-26">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libbook' 
+				 
+				 and index_name = 'FileType';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="FileType" tableName="libbook">
+            <column name="FileType"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-27">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 2 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libbook' 
+				 
+				 and index_name = 'FileTypeDel';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="FileTypeDel" tableName="libbook">
+            <column name="Deleted"/>
+            <column name="FileType"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-28">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libavtorname' 
+				 
+				 and index_name = 'FirstName';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="FirstName" tableName="libavtorname">
+            <column name="FirstName"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-29">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libjoinedbooks' 
+				 
+				 and index_name = 'GoodId';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="GoodId" tableName="libjoinedbooks">
+            <column defaultValueNumeric="0" name="GoodId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-30">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libavtorname' 
+				 
+				 and index_name = 'Homepage';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="Homepage" tableName="libavtorname">
+            <column name="Homepage"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-31">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libbook' 
+				 
+				 and index_name = 'Lang';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="Lang" tableName="libbook">
+            <column name="Lang"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-32">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 2 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libbook' 
+				 
+				 and index_name = 'LangDel';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="LangDel" tableName="libbook">
+            <column name="Deleted"/>
+            <column name="Lang"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-33">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libavtorname' 
+				 
+				 and index_name = 'LastName';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="LastName" tableName="libavtorname">
+            <column name="LastName"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-34">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libavtorname' 
+				 
+				 and index_name = 'MasterId';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="MasterId" tableName="libavtorname">
+            <column defaultValueNumeric="0" name="MasterId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-35">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libbook' 
+				 
+				 and index_name = 'N';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="N" tableName="libbook">
+            <column defaultValueNumeric="0" name="N"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-36">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libseq' 
+				 
+				 and index_name = 'SeqId';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="SeqId" tableName="libseq">
+            <column name="SeqId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-37">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libjoinedbooks' 
+				 
+				 and index_name = 'Time';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="Time" tableName="libjoinedbooks">
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="Time"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-38">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libbook' 
+				 
+				 and index_name = 'Title';
+			</sqlCheck>  
+        </preConditions>		
+		<createIndex indexName="Title" tableName="libbook">
+            <column name="Title"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-39">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libbook' 
+				 
+				 and index_name = 'Title1';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="Title1" tableName="libbook">
+            <column name="Title1"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-40">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libtranslator' 
+				 
+				 and index_name = 'TranslatorId';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="TranslatorId" tableName="libtranslator">
+            <column name="TranslatorId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-41">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 2 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='librate' 
+				 
+				 and index_name = 'UserId';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="UserId" tableName="librate">
+            <column name="UserId"/>
+            <column name="Rate"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-42">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libbook' 
+				 
+				 and index_name = 'Year';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="Year" tableName="libbook">
+            <column defaultValueNumeric="0" name="Year"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-43">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libavtorname' 
+				 
+				 and index_name = 'email';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="email" tableName="libavtorname">
+            <column name="Email"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-44">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libavtor' 
+				 
+				 and index_name = 'iav';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="iav" tableName="libavtor">
+            <column defaultValueNumeric="0" name="AvtorId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-45">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libgenre' 
+				 
+				 and index_name = 'ibook';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="ibook" tableName="libgenre">
+            <column defaultValueNumeric="0" name="BookId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-46">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libgenre' 
+				 
+				 and index_name = 'igenre';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="igenre" tableName="libgenre">
+            <column defaultValueNumeric="0" name="GenreId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-47">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libgenrelist' 
+				 
+				 and index_name = 'meta';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="meta" tableName="libgenrelist">
+            <column name="GenreMeta"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-48">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libjoinedbooks' 
+				 
+				 and index_name = 'realId';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="realId" tableName="libjoinedbooks">
+            <column name="realId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1642073240820-49">
+        <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+		       SELECT count(*) = 1 expectedResult FROM information_schema.statistics 
+			   WHERE 
+			     table_schema = 'flibusta' 
+				 
+			     and  table_name ='libavtorname' 
+				 
+				 and index_name = 'uid';
+			</sqlCheck>  
+        </preConditions>
+		<createIndex indexName="uid" tableName="libavtorname">
+            <column defaultValueNumeric="0" name="uid"/>
+        </createIndex>
+    </changeSet>
+	<changeSet  author="user (generated)"  id="1642073240820-50">
+        <sql dbms="mysql" endDelimiter=";" splitStatements="true" stripComments="false">
+ALTER TABLE flibusta.libavtorname AUTO_INCREMENT=248852;
+ALTER TABLE flibusta.libbook AUTO_INCREMENT=641535;
+ALTER TABLE flibusta.libgenre AUTO_INCREMENT=1043216;
+ALTER TABLE flibusta.libgenrelist AUTO_INCREMENT=254;
+ALTER TABLE flibusta.libjoinedbooks AUTO_INCREMENT=128787;
+ALTER TABLE flibusta.librate AUTO_INCREMENT=2112515;
+ALTER TABLE flibusta.librecs AUTO_INCREMENT=218452;
+ALTER TABLE flibusta.libseqname AUTO_INCREMENT=72972;
+        <comment>Устанавливаем значения в автоиндексируемымых столбцах</comment>
+   </sql>
+</changeSet>
+
+</databaseChangeLog>

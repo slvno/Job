@@ -1,0 +1,221 @@
+####################################################
+##   _     _             _ _                      ##
+##  | |   (_)           (_) |                     ##
+##  | |    _  __ _ _   _ _| |__   __ _ ___  ___   ##
+##  | |   | |/ _` | | | | | '_ \ / _` / __|/ _ \  ##
+##  | |___| | (_| | |_| | | |_) | (_| \__ \  __/  ##
+##  \_____/_|\__, |\__,_|_|_.__/ \__,_|___/\___|  ##
+##              | |                               ##
+##              |_|                               ##
+##                                                ## 
+##  Get documentation at docs.liquibase.com       ##
+##  Get certified courses at learn.liquibase.com  ## 
+##  Free schema change activity reports at        ##
+##      https://hub.liquibase.com                 ##
+##                                                ##
+####################################################
+Starting Liquibase at 21:40:00 (version 4.7.0 #1140 built at 2022-01-07 19:26+0000)
+Liquibase Version: 4.7.0
+Liquibase Community 4.7.0 by Liquibase
+Skipping auto-registration
+--  *********************************************************************
+--  Update Database Script
+--  *********************************************************************
+--  Change Log: db.changelog-1.0.xml
+--  Ran at: 31.01.22 21:40
+--  Against: flibusta@localhost@jdbc:mysql://localhost:3306/flibusta
+--  Liquibase version: 4.7.0
+--  *********************************************************************
+
+--  Lock Database
+UPDATE flibusta.DATABASECHANGELOGLOCK SET `LOCKED` = 1, LOCKEDBY = 'DOM2 (169.254.193.170)', LOCKGRANTED = '2022-01-31 21:40:00.684' WHERE ID = 1 AND `LOCKED` = 0;
+
+--  Release Database Lock
+UPDATE flibusta.DATABASECHANGELOGLOCK SET `LOCKED` = 0, LOCKEDBY = NULL, LOCKGRANTED = NULL WHERE ID = 1;
+
+--  Lock Database
+UPDATE flibusta.DATABASECHANGELOGLOCK SET `LOCKED` = 1, LOCKEDBY = 'DOM2 (169.254.193.170)', LOCKGRANTED = '2022-01-31 21:40:01.396' WHERE ID = 1 AND `LOCKED` = 0;
+
+--  Changeset db.changelog-1.0.xml::1642073240820-18::user (generated)
+ALTER TABLE flibusta.libbook ADD CONSTRAINT BookDel UNIQUE (Deleted, BookId);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-18', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 18, '8:901a22d2e724b9cda07d384d3dbfd27f', 'addUniqueConstraint constraintName=BookDel, tableName=libbook', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-19::user (generated)
+ALTER TABLE flibusta.librate ADD CONSTRAINT BookId UNIQUE (BookId, UserId);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-19', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 19, '8:b7c648f6ebdb0b966d5a63627c8cf126', 'addUniqueConstraint constraintName=BookId, tableName=librate', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-20::user (generated)
+ALTER TABLE flibusta.librecs ADD CONSTRAINT bu UNIQUE (bid, uid);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-20', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 20, '8:040d2762a09ec10d3036a248ef67472d', 'addUniqueConstraint constraintName=bu, tableName=librecs', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-21::user (generated)
+ALTER TABLE flibusta.libgenre ADD CONSTRAINT u UNIQUE (BookId, GenreId);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-21', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 21, '8:02a7c7c2bf2c8f0e12abe7e9ce2edd53', 'addUniqueConstraint constraintName=u, tableName=libgenre', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-22::user (generated)
+CREATE INDEX BookId1 ON flibusta.librate(BookId);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-22', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 22, '8:d3bd36ee502f97f072748bdc192bb6fc', 'createIndex indexName=BookId1, tableName=librate', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-23::user (generated)
+CREATE INDEX Deleted ON flibusta.libbook(Deleted);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-23', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 23, '8:a2ef513a93cf0f60ec8b604d6e618a0f', 'createIndex indexName=Deleted, tableName=libbook', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-24::user (generated)
+CREATE INDEX FileAuthor ON flibusta.libbook(FileAuthor);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-24', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 24, '8:6626e12d36261daac30ba15d36455ee4', 'createIndex indexName=FileAuthor, tableName=libbook', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-25::user (generated)
+CREATE INDEX FileSize ON flibusta.libbook(FileSize);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-25', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 25, '8:7c342979861ad5e855fba0f385980bd8', 'createIndex indexName=FileSize, tableName=libbook', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-26::user (generated)
+CREATE INDEX FileType ON flibusta.libbook(FileType);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-26', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 26, '8:bcc6dd0744f90bb20a681fa65b353ed6', 'createIndex indexName=FileType, tableName=libbook', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-27::user (generated)
+CREATE INDEX FileTypeDel ON flibusta.libbook(Deleted, FileType);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-27', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 27, '8:db9953e39e82fa2fb2fbd301efcaadf0', 'createIndex indexName=FileTypeDel, tableName=libbook', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-28::user (generated)
+CREATE INDEX FirstName ON flibusta.libavtorname(FirstName);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-28', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 28, '8:6ca9f1ae0617a71a069d977d066c6dc0', 'createIndex indexName=FirstName, tableName=libavtorname', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-29::user (generated)
+CREATE INDEX GoodId ON flibusta.libjoinedbooks(GoodId);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-29', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 29, '8:fec5304e970e3d9bea7330da0e354db2', 'createIndex indexName=GoodId, tableName=libjoinedbooks', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-30::user (generated)
+CREATE INDEX Homepage ON flibusta.libavtorname(Homepage);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-30', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 30, '8:59e300022e6f1554880e3963f63ed1db', 'createIndex indexName=Homepage, tableName=libavtorname', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-31::user (generated)
+CREATE INDEX Lang ON flibusta.libbook(Lang);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-31', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 31, '8:0bdbb4c347780452ead1e8141e156ff6', 'createIndex indexName=Lang, tableName=libbook', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-32::user (generated)
+CREATE INDEX LangDel ON flibusta.libbook(Deleted, Lang);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-32', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 32, '8:9831adba21efc57841f8f651ab72b9d9', 'createIndex indexName=LangDel, tableName=libbook', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-33::user (generated)
+CREATE INDEX LastName ON flibusta.libavtorname(LastName);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-33', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 33, '8:9e84f871a37921e4df703c706994c4c1', 'createIndex indexName=LastName, tableName=libavtorname', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-34::user (generated)
+CREATE INDEX MasterId ON flibusta.libavtorname(MasterId);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-34', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 34, '8:68bdcd3e0260de0b99cf4d6f995b0c71', 'createIndex indexName=MasterId, tableName=libavtorname', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-35::user (generated)
+CREATE INDEX N ON flibusta.libbook(N);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-35', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 35, '8:ec30319a3dfd3265241fa0459f0b60fb', 'createIndex indexName=N, tableName=libbook', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-36::user (generated)
+CREATE INDEX SeqId ON flibusta.libseq(SeqId);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-36', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 36, '8:6da083df0cc47d13137d69f5234f1a34', 'createIndex indexName=SeqId, tableName=libseq', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-37::user (generated)
+CREATE INDEX Time ON flibusta.libjoinedbooks(Time);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-37', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 37, '8:6b15e3f4b0499fd1c287a60072238e5e', 'createIndex indexName=Time, tableName=libjoinedbooks', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-38::user (generated)
+CREATE INDEX Title ON flibusta.libbook(Title);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-38', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 38, '8:82e026589de5eab6292b35c9253ee785', 'createIndex indexName=Title, tableName=libbook', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-39::user (generated)
+CREATE INDEX Title1 ON flibusta.libbook(Title1);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-39', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 39, '8:639de6625b6a7235c39e127d613e1edc', 'createIndex indexName=Title1, tableName=libbook', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-40::user (generated)
+CREATE INDEX TranslatorId ON flibusta.libtranslator(TranslatorId);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-40', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 40, '8:d4a5e0d904de5649c29b43d8345f4be9', 'createIndex indexName=TranslatorId, tableName=libtranslator', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-41::user (generated)
+CREATE INDEX UserId ON flibusta.librate(UserId, Rate);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-41', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 41, '8:d7e1a37185d61876e9e5478cfeb42e34', 'createIndex indexName=UserId, tableName=librate', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-42::user (generated)
+CREATE INDEX Year ON flibusta.libbook(Year);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-42', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 42, '8:3a61047751ed38f52a06063081340a4c', 'createIndex indexName=Year, tableName=libbook', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-43::user (generated)
+CREATE INDEX email ON flibusta.libavtorname(Email);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-43', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 43, '8:6c9d1274010f4ffe2f5142664dbaee76', 'createIndex indexName=email, tableName=libavtorname', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-44::user (generated)
+CREATE INDEX iav ON flibusta.libavtor(AvtorId);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-44', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 44, '8:74b9cdc31b38ddd0c991364591cf039f', 'createIndex indexName=iav, tableName=libavtor', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-45::user (generated)
+CREATE INDEX ibook ON flibusta.libgenre(BookId);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-45', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 45, '8:dbad1ddd8fdfdff80465408a95816115', 'createIndex indexName=ibook, tableName=libgenre', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-46::user (generated)
+CREATE INDEX igenre ON flibusta.libgenre(GenreId);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-46', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 46, '8:24ecfcbf50b4671b27edeb07b954e883', 'createIndex indexName=igenre, tableName=libgenre', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-47::user (generated)
+CREATE INDEX meta ON flibusta.libgenrelist(GenreMeta);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-47', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 47, '8:fd2c0c1815ca52efce13986e280f1d18', 'createIndex indexName=meta, tableName=libgenrelist', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-48::user (generated)
+CREATE INDEX realId ON flibusta.libjoinedbooks(realId);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-48', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 48, '8:67f47cfba3b4d321e3927ab33db4eb4d', 'createIndex indexName=realId, tableName=libjoinedbooks', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-49::user (generated)
+CREATE INDEX uid ON flibusta.libavtorname(uid);
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-49', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 49, '8:590e7bc44dfe83dd7849a7578f57e5d7', 'createIndex indexName=uid, tableName=libavtorname', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Changeset db.changelog-1.0.xml::1642073240820-50::user (generated)
+ALTER TABLE flibusta.libavtorname AUTO_INCREMENT=248852;
+
+ALTER TABLE flibusta.libbook AUTO_INCREMENT=641535;
+
+ALTER TABLE flibusta.libgenre AUTO_INCREMENT=1043216;
+
+ALTER TABLE flibusta.libgenrelist AUTO_INCREMENT=254;
+
+ALTER TABLE flibusta.libjoinedbooks AUTO_INCREMENT=128787;
+
+ALTER TABLE flibusta.librate AUTO_INCREMENT=2112515;
+
+ALTER TABLE flibusta.librecs AUTO_INCREMENT=218452;
+
+ALTER TABLE flibusta.libseqname AUTO_INCREMENT=72972;
+
+INSERT INTO flibusta.DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, `DESCRIPTION`, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1642073240820-50', 'user (generated)', 'db.changelog-1.0.xml', NOW(), 50, '8:fdc7b80676423ac46eb3a9395e930080', 'sql', '', 'EXECUTED', NULL, NULL, '4.7.0', '3654401209');
+
+--  Release Database Lock
+UPDATE flibusta.DATABASECHANGELOGLOCK SET `LOCKED` = 0, LOCKEDBY = NULL, LOCKGRANTED = NULL WHERE ID = 1;
+
+Liquibase command 'updateSql' was executed successfully.
